@@ -1,0 +1,1443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Atelier Minimal — Curated minimalist fashion essentials crafted for effortless elegance, timeless comfort, and conscious living."
+    />
+    <title>ATELIER — Modern Minimalist Clothing Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="apple-touch-icon" href="images/favicon.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+        <div class="header-left">
+          <button class="icon-btn" id="menu-btn" aria-label="Open Menu">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="brand-wordmark">
+            <span class="brand-name">ATELIER</span>
+            <span class="brand-sub" data-i18n="brandSub">Edition</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <!-- Language Switcher -->
+          <button
+            class="lang-toggle-btn"
+            id="lang-toggle-btn"
+            aria-label="Switch Language / تغيير اللغة"
+            title="Switch Language / تغيير اللغة"
+          >
+            <span class="material-symbols-outlined lang-icon">translate</span>
+            <span class="lang-label" id="lang-label">عربي</span>
+          </button>
+
+          <!-- Search Button -->
+          <button class="icon-btn" id="search-btn" aria-label="Search">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+
+          <!-- Favorites / Wishlist Button -->
+          <button
+            class="icon-btn"
+            id="wishlist-btn"
+            aria-label="Favorites"
+            aria-expanded="false"
+          >
+            <span class="material-symbols-outlined">favorite</span>
+            <span class="cart-badge" id="wishlist-count">0</span>
+          </button>
+
+          <!-- Cart Button -->
+          <button
+            class="icon-btn"
+            id="cart-btn"
+            aria-label="Cart"
+            aria-expanded="false"
+          >
+            <span class="material-symbols-outlined">local_mall</span>
+            <span class="cart-badge" id="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MENU DRAWER -->
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+    <nav
+      class="drawer-menu"
+      id="drawer-menu"
+      aria-label="Main Navigation"
+      aria-hidden="true"
+    >
+      <button
+        class="drawer-close"
+        id="drawer-close-btn"
+        aria-label="Close Menu"
+      >
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="drawer-brand">ATELIER</div>
+      <ul class="drawer-links">
+        <li><a href="#hero" data-i18n="navHome">Home</a></li>
+        <li>
+          <a href="#categories" data-i18n="navCollections">Collections</a>
+        </li>
+        <li><a href="#products" data-i18n="navShop">Shop The Edit</a></li>
+        <li>
+          <a href="#wishlist" id="drawer-wishlist-link" data-i18n="navFavorites"
+            >Favorites (<span id="drawer-wishlist-count">0</span>)</a
+          >
+        </li>
+        <li><a href="#newsletter" data-i18n="navMembers">Members Club</a></li>
+        <li><a href="#footer" data-i18n="navAbout">About</a></li>
+      </ul>
+      <div class="drawer-lang-wrap">
+        <button class="drawer-lang-btn" id="drawer-lang-btn">
+          <span class="material-symbols-outlined">translate</span>
+          <span id="drawer-lang-label">التبديل إلى العربية</span>
+        </button>
+      </div>
+      <div class="drawer-footer-text">
+        "Timeless elegance reflecting your unique style. Discover our exclusive
+        mirror collection."
+      </div>
+    </nav>
+
+    <!-- CART DRAWER -->
+    <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+    <aside
+      class="cart-drawer"
+      id="cart-drawer"
+      aria-label="Shopping Cart"
+      aria-hidden="true"
+    >
+      <div class="cart-drawer-header">
+        <span class="cart-drawer-title" data-i18n="cartTitle">Your Cart</span>
+        <button class="icon-btn" id="cart-close-btn" aria-label="Close Cart">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="cart-items-list" id="cart-items-list">
+        <div class="cart-empty" id="cart-empty-state">
+          <span class="material-symbols-outlined cart-empty-icon"
+            >local_mall</span
+          >
+          <p data-i18n="cartEmpty">Your cart is empty</p>
+          <span data-i18n="cartEmptySub">Add curated pieces to begin.</span>
+        </div>
+      </div>
+      <div class="cart-drawer-footer" id="cart-footer" style="display: none">
+        <div class="cart-subtotal">
+          <span data-i18n="subtotal">Subtotal</span>
+          <span class="cart-total-price" id="cart-total-display">$0</span>
+        </div>
+        <button class="btn-primary" id="checkout-btn">
+          <span data-i18n="checkoutBtn">Proceed to Checkout</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+        <p class="cart-shipping-note" data-i18n="cartShippingNote">
+          Complimentary express shipping on orders over $150
+        </p>
+      </div>
+    </aside>
+
+    <!-- WISHLIST / FAVORITES DRAWER -->
+    <div
+      class="wishlist-overlay"
+      id="wishlist-overlay"
+      aria-hidden="true"
+    ></div>
+    <aside
+      class="wishlist-drawer"
+      id="wishlist-drawer"
+      aria-label="Your Favorites"
+      aria-hidden="true"
+    >
+      <div class="wishlist-drawer-header">
+        <div class="wishlist-drawer-title-wrap">
+          <span class="material-symbols-outlined wishlist-header-icon"
+            >favorite</span
+          >
+          <span class="wishlist-drawer-title" data-i18n="wishlistTitle"
+            >Your Favorites</span
+          >
+        </div>
+        <button
+          class="icon-btn"
+          id="wishlist-close-btn"
+          aria-label="Close Favorites"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="wishlist-items-list" id="wishlist-items-list">
+        <div class="wishlist-empty" id="wishlist-empty-state">
+          <span class="material-symbols-outlined wishlist-empty-icon"
+            >favorite_border</span
+          >
+          <p data-i18n="wishlistEmpty">Your favorites list is empty</p>
+          <span data-i18n="wishlistEmptySub"
+            >Click the heart on any piece you love to save it here.</span
+          >
+        </div>
+      </div>
+      <div
+        class="wishlist-drawer-footer"
+        id="wishlist-footer"
+        style="display: none"
+      >
+        <button class="btn-primary" id="wishlist-move-all-btn">
+          <span data-i18n="moveAllToCart">Move All Pieces to Cart</span>
+          <span class="material-symbols-outlined">shopping_cart_checkout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+      <!-- HERO -->
+      <section
+        class="hero-section"
+        id="hero"
+        aria-label="Hero — Spring Capsule"
+      >
+        <div class="hero-image-wrap">
+          <img
+            src="images/hero.jpg"
+            alt="Atelier Spring Lookbook — elegant minimalist fashion editorial"
+            class="hero-img"
+            loading="eager"
+          />
+          <div class="hero-scrim"></div>
+          <div class="hero-badge-wrap">
+            <span class="hero-badge">
+              <span class="badge-dot"></span>
+              <span data-i18n="heroBadge">Edition 04 / Spring Capsule</span>
+            </span>
+          </div>
+          <div class="hero-copy">
+            <div class="hero-copy-inner">
+              <span class="label-caps hero-overline" data-i18n="heroOverline"
+                >New Arrivals</span
+              >
+              <h1 class="hero-headline" data-i18n="heroHeadline">
+                Discover Your Unique Style
+              </h1>
+              <p class="hero-sub" data-i18n="heroSub">
+                Curated minimalist essentials crafted for effortless elegance,
+                timeless comfort, and conscious living.
+              </p>
+              <div class="hero-actions">
+                <a href="#products" class="btn-primary" id="shop-now-btn">
+                  <span data-i18n="shopNow">Shop Now</span>
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <button
+                  class="btn-icon-ghost"
+                  id="quick-look-btn"
+                  aria-label="Curated Look Preview"
+                >
+                  <span class="material-symbols-outlined">auto_awesome</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-quote-bar">
+          <p class="hero-quote-text" data-i18n="heroQuote">
+            "Timeless elegance reflecting your unique style. Discover our
+            exclusive mirror collection."
+          </p>
+          <span class="hero-quote-origin" data-i18n="heroOrigin"
+            >Modern Style — Premium Fashion</span
+          >
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section
+        class="categories-section"
+        id="categories"
+        aria-label="Shop by Category"
+      >
+        <div class="section-header px-gutter">
+          <div>
+            <span class="label-caps section-overline" data-i18n="navCollections"
+              >Collections</span
+            >
+            <h2 class="section-headline" data-i18n="categoriesTitle">
+              Shop by Category
+            </h2>
+          </div>
+          <span class="section-count" data-i18n="categoriesCount"
+            >03 Curations</span
+          >
+        </div>
+        <div class="categories-scroll" role="list">
+          <a href="#products" class="category-card" role="listitem">
+            <div class="category-img-wrap">
+              <img
+                src="images/women.jpg"
+                alt="Women collection — effortless tailoring and silks"
+                class="category-img"
+                loading="lazy"
+              />
+              <span class="category-count-badge" data-i18n="womenCount"
+                >48 Items</span
+              >
+            </div>
+            <div class="category-meta">
+              <div>
+                <h3 class="category-title" data-i18n="womenTitle">Women</h3>
+                <p class="category-desc" data-i18n="womenDesc">
+                  Effortless Tailoring &amp; Silks
+                </p>
+              </div>
+              <div class="category-arrow">
+                <span class="material-symbols-outlined">north_east</span>
+              </div>
+            </div>
+          </a>
+          <a href="#products" class="category-card" role="listitem">
+            <div class="category-img-wrap">
+              <img
+                src="images/men.jpg"
+                alt="Men collection — minimal suiting and cashmere"
+                class="category-img"
+                loading="lazy"
+              />
+              <span class="category-count-badge" data-i18n="menCount"
+                >36 Items</span
+              >
+            </div>
+            <div class="category-meta">
+              <div>
+                <h3 class="category-title" data-i18n="menTitle">Men</h3>
+                <p class="category-desc" data-i18n="menDesc">
+                  Minimal Suiting &amp; Cashmere
+                </p>
+              </div>
+              <div class="category-arrow">
+                <span class="material-symbols-outlined">north_east</span>
+              </div>
+            </div>
+          </a>
+          <a href="#products" class="category-card" role="listitem">
+            <div class="category-img-wrap">
+              <img
+                src="images/accessories.jpg"
+                alt="Accessories — handcrafted leather and jewelry"
+                class="category-img"
+                loading="lazy"
+              />
+              <span class="category-count-badge" data-i18n="accCount"
+                >24 Items</span
+              >
+            </div>
+            <div class="category-meta">
+              <div>
+                <h3 class="category-title" data-i18n="accTitle">Accessories</h3>
+                <p class="category-desc" data-i18n="accDesc">
+                  Handcrafted Leather &amp; Jewelry
+                </p>
+              </div>
+              <div class="category-arrow">
+                <span class="material-symbols-outlined">north_east</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- BRAND VALUES -->
+      <section class="values-section px-gutter" aria-label="Brand Values">
+        <div class="values-card">
+          <div class="value-row">
+            <span class="material-symbols-outlined value-icon">eco</span>
+            <div>
+              <span class="label-caps value-title" data-i18n="val1Title"
+                >Sustainably Sourced</span
+              >
+              <span class="value-desc" data-i18n="val1Desc"
+                >100% trace-certified European organic fibers</span
+              >
+            </div>
+          </div>
+          <div class="values-divider"></div>
+          <div class="value-row">
+            <span class="material-symbols-outlined value-icon"
+              >local_shipping</span
+            >
+            <div>
+              <span class="label-caps value-title" data-i18n="val2Title"
+                >Complimentary Express</span
+              >
+              <span class="value-desc" data-i18n="val2Desc"
+                >Carbon-neutral courier on orders over $150</span
+              >
+            </div>
+          </div>
+          <div class="values-divider"></div>
+          <div class="value-row">
+            <span class="material-symbols-outlined value-icon">handyman</span>
+            <div>
+              <span class="label-caps value-title" data-i18n="val3Title"
+                >Artisanal Craftsmanship</span
+              >
+              <span class="value-desc" data-i18n="val3Desc"
+                >Limited batch tailoring produced</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section
+        class="products-section px-gutter"
+        id="products"
+        aria-label="Curated Essentials"
+      >
+        <div class="section-header">
+          <div>
+            <span class="label-caps section-overline" data-i18n="theEdit"
+              >The Edit</span
+            >
+            <h2 class="section-headline" data-i18n="curatedEssentials">
+              Curated Essentials
+            </h2>
+          </div>
+          <button class="link-underline" id="view-all-btn" data-i18n="viewAll">
+            View All (8 Pieces)
+          </button>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="category-filters" role="group" aria-label="Filter products">
+          <button
+            class="filter-pill active"
+            data-category="all"
+            data-i18n="filterAll"
+          >
+            All Pieces
+          </button>
+          <button
+            class="filter-pill"
+            data-category="Outerwear"
+            data-i18n="filterOuterwear"
+          >
+            Outerwear
+          </button>
+          <button
+            class="filter-pill"
+            data-category="Bottoms"
+            data-i18n="filterBottoms"
+          >
+            Bottoms
+          </button>
+          <button
+            class="filter-pill"
+            data-category="Knitwear"
+            data-i18n="filterKnitwear"
+          >
+            Knitwear
+          </button>
+          <button
+            class="filter-pill"
+            data-category="Footwear"
+            data-i18n="filterFootwear"
+          >
+            Footwear
+          </button>
+          <button
+            class="filter-pill"
+            data-category="Accessories"
+            data-i18n="filterAccessories"
+          >
+            Accessories
+          </button>
+        </div>
+        <div class="products-grid" id="products-grid" role="list">
+          <!-- Product 1 -->
+          <article
+            class="product-card"
+            data-product-id="1"
+            data-name="Oversized Wool Blazer"
+            data-price="290"
+            data-category="Outerwear"
+            data-rating="4.9"
+            role="listitem"
+          >
+            <div class="product-img-wrap">
+              <img
+                src="images/product-blazer.jpg"
+                alt="Oversized charcoal gray wool structured blazer"
+                class="product-img"
+                loading="lazy"
+              />
+              <span class="product-badge badge-primary">Bestseller</span>
+              <button
+                class="wishlist-btn"
+                aria-label="Add to Wishlist"
+                data-wished="false"
+              >
+                <span class="material-symbols-outlined">favorite</span>
+              </button>
+            </div>
+            <div class="product-meta">
+              <div class="product-meta-top">
+                <span class="product-category">Outerwear</span>
+                <div class="product-rating">
+                  <span class="material-symbols-outlined star-icon">star</span
+                  ><span>4.9</span>
+                </div>
+              </div>
+              <h3 class="product-name">Oversized Wool Blazer</h3>
+              <div class="product-footer">
+                <span class="product-price" data-base-price="290">$290</span>
+                <button
+                  class="btn-add-cart"
+                  data-product-id="1"
+                  aria-label="Add to cart"
+                >
+                  <span class="material-symbols-outlined">add</span
+                  ><span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
+          </article>
+          <!-- Product 2 -->
+          <article
+            class="product-card"
+            data-product-id="2"
+            data-name="Silk Crepe Wide Trouser"
+            data-price="185"
+            data-category="Bottoms"
+            data-rating="4.8"
+            role="listitem"
+          >
+            <div class="product-img-wrap">
+              <img
+                src="images/product-trousers.jpg"
+                alt="Flowy taupe silk crepe wide-leg trousers"
+                class="product-img"
+                loading="lazy"
+              />
+              <span class="product-badge badge-secondary">New</span>
+              <button
+                class="wishlist-btn"
+                aria-label="Add to Wishlist"
+                data-wished="false"
+              >
+                <span class="material-symbols-outlined">favorite</span>
+              </button>
+            </div>
+            <div class="product-meta">
+              <div class="product-meta-top">
+                <span class="product-category">Bottoms</span>
+                <div class="product-rating">
+                  <span class="material-symbols-outlined star-icon">star</span
+                  ><span>4.8</span>
+                </div>
+              </div>
+              <h3 class="product-name">Silk Crepe Wide Trouser</h3>
+              <div class="product-footer">
+                <span class="product-price" data-base-price="185">$185</span>
+                <button
+                  class="btn-add-cart"
+                  data-product-id="2"
+                  aria-label="Add to cart"
+                >
+                  <span class="material-symbols-outlined">add</span
+                  ><span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
+          </article>
+          <!-- Product 3 -->
+          <article
+            class="product-card"
+            data-product-id="3"
+            data-name="Ribbed Cashmere Mockneck"
+            data-price="210"
+            data-category="Knitwear"
+            data-rating="5.0"
+            role="listitem"
+          >
+            <div class="product-img-wrap">
+              <img
+                src="images/women.jpg"
+                alt="Ribbed oat-colored pure cashmere mockneck sweater"
+                class="product-img"
+                loading="lazy"
+              />
+              <button
+                class="wishlist-btn"
+                aria-label="Add to Wishlist"
+                data-wished="false"
+              >
+                <span class="material-symbols-outlined">favorite</span>
+              </button>
+            </div>
+            <div class="product-meta">
+              <div class="product-meta-top">
+                <span class="product-category">Knitwear</span>
+                <div class="product-rating">
+                  <span class="material-symbols-outlined star-icon">star</span
+                  ><span>5.0</span>
+                </div>
+              </div>
+              <h3 class="product-name">Ribbed Cashmere Mockneck</h3>
+              <div class="product-footer">
+                <span class="product-price" data-base-price="210">$210</span>
+                <button
+                  class="btn-add-cart"
+                  data-product-id="3"
+                  aria-label="Add to cart"
+                >
+                  <span class="material-symbols-outlined">add</span
+                  ><span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
+          </article>
+          <!-- Product 4 -->
+          <article
+            class="product-card"
+            data-product-id="4"
+            data-name="Sculptural Minimal Loafer"
+            data-price="245"
+            data-category="Footwear"
+            data-rating="4.7"
+            role="listitem"
+          >
+            <div class="product-img-wrap">
+              <img
+                src="images/accessories.jpg"
+                alt="Black glazed leather sculptural minimal loafers"
+                class="product-img"
+                loading="lazy"
+              />
+              <button
+                class="wishlist-btn"
+                aria-label="Add to Wishlist"
+                data-wished="false"
+              >
+                <span class="material-symbols-outlined">favorite</span>
+              </button>
+            </div>
+            <div class="product-meta">
+              <div class="product-meta-top">
+                <span class="product-category">Footwear</span>
+                <div class="product-rating">
+                  <span class="material-symbols-outlined star-icon">star</span
+                  ><span>4.7</span>
+                </div>
+              </div>
+              <h3 class="product-name">Sculptural Minimal Loafer</h3>
+              <div class="product-footer">
+                <span class="product-price" data-base-price="245">$245</span>
+                <button
+                  class="btn-add-cart"
+                  data-product-id="4"
+                  aria-label="Add to cart"
+                >
+                  <span class="material-symbols-outlined">add</span
+                  ><span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section
+        class="newsletter-section px-gutter"
+        id="newsletter"
+        aria-label="Atelier Members Club"
+      >
+        <div class="newsletter-card">
+          <div class="newsletter-glow"></div>
+          <div class="newsletter-badge-row">
+            <span class="badge-dot badge-dot--accent"></span>
+            <span
+              class="label-caps newsletter-badge-label"
+              data-i18n="newsBadge"
+              >Members Club</span
+            >
+          </div>
+          <div class="newsletter-copy">
+            <h2 class="newsletter-headline" data-i18n="newsHeadline">
+              Join The Atelier Club
+            </h2>
+            <p class="newsletter-sub" data-i18n="newsSub">
+              Receive exclusive early invites to seasonal private sales,
+              architectural lookbooks, and 10% off your first curation.
+            </p>
+          </div>
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <div class="newsletter-input-wrap">
+              <input
+                type="email"
+                id="newsletter-email"
+                class="newsletter-input"
+                placeholder="Enter your email address"
+                data-i18n-placeholder="emailPlaceholder"
+                aria-label="Email address"
+                required
+              />
+              <button
+                type="submit"
+                class="newsletter-submit"
+                id="newsletter-submit"
+              >
+                <span data-i18n="newsJoin">Join</span>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </div>
+            <span class="newsletter-disclaimer" data-i18n="newsDisclaimer"
+              >Unsubscribe anytime. Zero noise policy.</span
+            >
+          </form>
+          <div
+            class="newsletter-success hidden"
+            id="newsletter-success"
+            role="alert"
+            aria-live="polite"
+          >
+            <span class="material-symbols-outlined newsletter-success-icon"
+              >check_circle</span
+            >
+            <span
+              class="label-caps newsletter-success-title"
+              data-i18n="newsSuccessTitle"
+              >Welcome to The Atelier Club</span
+            >
+            <span class="newsletter-success-sub" data-i18n="newsSuccessSub"
+              >Check your inbox for your private edition code.</span
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" id="footer">
+      <div class="footer-inner px-gutter">
+        <div class="footer-brand-col">
+          <span class="footer-brand-name">ATELIER</span>
+          <p class="footer-brand-desc" data-i18n="footerBrandDesc">
+            Quiet confidence through architectural silhouettes, artisanal craft,
+            and modern European pacing.
+          </p>
+        </div>
+        <div class="footer-journal-col">
+          <span class="label-caps footer-col-label" data-i18n="footerJournal"
+            >The Journal</span
+          >
+          <div class="footer-subscribe-row">
+            <input
+              type="email"
+              class="footer-email-input"
+              id="footer-email"
+              placeholder="Enter your email address"
+              data-i18n-placeholder="emailPlaceholder"
+              aria-label="Subscribe to The Journal"
+            />
+            <button
+              class="footer-subscribe-btn"
+              id="footer-subscribe-btn"
+              data-i18n="footerSubscribe"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-links-col">
+            <span class="label-caps footer-col-label" data-i18n="footerNavLabel"
+              >Navigation</span
+            >
+            <a href="#" class="footer-link" data-i18n="footerLookbook"
+              >Lookbook</a
+            >
+            <a href="#" class="footer-link" data-i18n="footerStudio"
+              >Atelier Studio</a
+            >
+            <a href="#" class="footer-link" data-i18n="footerStockists"
+              >Stockists</a
+            >
+            <a href="#" class="footer-link" data-i18n="footerArchives"
+              >Archives</a
+            >
+          </div>
+          <div class="footer-links-col">
+            <span
+              class="label-caps footer-col-label"
+              data-i18n="footerClientCare"
+              >Client Care</span
+            >
+            <a href="#" class="footer-link" data-i18n="footerShipping"
+              >Shipping &amp; Returns</a
+            >
+            <a href="#" class="footer-link" data-i18n="footerAppointments"
+              >Private Appointments</a
+            >
+            <a href="#" class="footer-link" data-i18n="footerPrivacy"
+              >Privacy Policy</a
+            >
+            <a href="#" class="footer-link" data-i18n="footerTerms"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram" class="footer-social-link"
+              ><span class="material-symbols-outlined">photo_camera</span></a
+            >
+            <a href="#" aria-label="Pinterest" class="footer-social-link"
+              ><span class="material-symbols-outlined">bookmark</span></a
+            >
+            <a href="#" aria-label="Studio Dispatch" class="footer-social-link"
+              ><span class="material-symbols-outlined">mail</span></a
+            >
+          </div>
+          <span class="footer-copy"
+            >&copy; <span id="copyright-year"></span>
+            <span data-i18n="footerCopy"
+              >ATELIER INC. All rights reserved.</span
+            ></span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav" id="bottom-nav" aria-label="Bottom Navigation">
+      <a href="#hero" class="bottom-nav-item active" aria-current="page">
+        <span class="material-symbols-outlined">cottage</span
+        ><span data-i18n="navHome">Home</span>
+      </a>
+      <a href="#products" class="bottom-nav-item">
+        <span class="material-symbols-outlined">grid_view</span
+        ><span data-i18n="navShop">Shop</span>
+      </a>
+      <a href="#categories" class="bottom-nav-item">
+        <span class="material-symbols-outlined">interests</span
+        ><span data-i18n="navCollections">Categories</span>
+      </a>
+      <a href="#newsletter" class="bottom-nav-item">
+        <span class="material-symbols-outlined">history_edu</span
+        ><span data-i18n="navAbout">About</span>
+      </a>
+      <a href="#footer" class="bottom-nav-item">
+        <span class="material-symbols-outlined">forum</span
+        ><span data-i18n="navContact">Contact</span>
+      </a>
+    </nav>
+
+    <!-- TOAST -->
+    <div
+      class="toast"
+      id="cart-toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <span class="material-symbols-outlined toast-icon">check_circle</span>
+      <span class="toast-text" id="toast-text">Added to cart</span>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div
+      class="checkout-overlay hidden"
+      id="checkout-overlay"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="checkout-modal hidden"
+      id="checkout-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="checkout-modal-title"
+    >
+      <div class="checkout-modal-inner">
+        <div class="checkout-header">
+          <div class="checkout-header-left">
+            <span class="checkout-brand-title" id="checkout-modal-title"
+              >ATELIER Checkout</span
+            >
+            <span class="checkout-secure-badge">
+              <span class="material-symbols-outlined">lock</span>
+              256-Bit SSL Encrypted
+            </span>
+          </div>
+          <button
+            class="icon-btn checkout-close-btn"
+            id="checkout-close-btn"
+            aria-label="Close Checkout"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <!-- Checkout Form View -->
+        <div class="checkout-body" id="checkout-form-view">
+          <form class="checkout-form" id="checkout-form" novalidate>
+            <div class="checkout-columns">
+              <!-- Left Column: Shipping & Payment -->
+              <div class="checkout-col-main">
+                <!-- 1. Contact & Shipping -->
+                <section class="checkout-section">
+                  <div class="checkout-section-header">
+                    <span class="checkout-step-number">1</span>
+                    <h3
+                      class="checkout-section-title"
+                      data-i18n="shippingTitle"
+                    >
+                      Shipping &amp; Delivery Details
+                    </h3>
+                  </div>
+                  <div class="checkout-fields-grid">
+                    <div class="checkout-field field-full">
+                      <label
+                        for="checkout-name"
+                        class="field-label"
+                        data-i18n="fullNameLabel"
+                        >Full Name *</label
+                      >
+                      <input
+                        type="text"
+                        id="checkout-name"
+                        class="field-input"
+                        placeholder="e.g. Eleanor Vance"
+                        data-i18n-placeholder="namePlaceholder"
+                        required
+                      />
+                    </div>
+                    <div class="checkout-field field-half">
+                      <label
+                        for="checkout-email"
+                        class="field-label"
+                        data-i18n="emailLabel"
+                        >Email Address *</label
+                      >
+                      <input
+                        type="email"
+                        id="checkout-email"
+                        class="field-input"
+                        placeholder="eleanor@example.com"
+                        data-i18n-placeholder="emailInputPlaceholder"
+                        required
+                      />
+                    </div>
+                    <div class="checkout-field field-half">
+                      <label
+                        for="checkout-phone"
+                        class="field-label"
+                        data-i18n="phoneLabel"
+                        >Phone Number *</label
+                      >
+                      <input
+                        type="tel"
+                        id="checkout-phone"
+                        class="field-input"
+                        placeholder="+20 100 123 4567"
+                        data-i18n-placeholder="phonePlaceholder"
+                        required
+                      />
+                    </div>
+                    <div class="checkout-field field-full">
+                      <label
+                        for="checkout-address"
+                        class="field-label"
+                        data-i18n="addressLabel"
+                        >Street Address *</label
+                      >
+                      <input
+                        type="text"
+                        id="checkout-address"
+                        class="field-input"
+                        placeholder="128 Rue de Faubourg Saint-Honoré"
+                        data-i18n-placeholder="addressPlaceholder"
+                        required
+                      />
+                    </div>
+                    <div class="checkout-field field-half">
+                      <label
+                        for="checkout-city"
+                        class="field-label"
+                        data-i18n="cityLabel"
+                        >City *</label
+                      >
+                      <input
+                        type="text"
+                        id="checkout-city"
+                        class="field-input"
+                        placeholder="Cairo / Alexandria"
+                        data-i18n-placeholder="cityPlaceholder"
+                        required
+                      />
+                    </div>
+                    <div class="checkout-field field-half">
+                      <label
+                        for="checkout-country"
+                        class="field-label"
+                        data-i18n="countryLabel"
+                        >Country / Region *</label
+                      >
+                      <select
+                        id="checkout-country"
+                        class="field-input"
+                        required
+                      >
+                        <option value="EG" selected>
+                          Egypt (جمهورية مصر العربية 🇪🇬)
+                        </option>
+                        <option value="SA">
+                          Saudi Arabia (المملكة العربية السعودية 🇸🇦)
+                        </option>
+                        <option value="AE">
+                          United Arab Emirates (الإمارات 🇦🇪)
+                        </option>
+                        <option value="KW">Kuwait (الكويت 🇰🇼)</option>
+                        <option value="US">United States 🇺🇸</option>
+                        <option value="FR">France 🇫🇷</option>
+                        <option value="UK">United Kingdom 🇬🇧</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- 2. Payment Method -->
+                <section class="checkout-section">
+                  <div class="checkout-section-header">
+                    <span class="checkout-step-number">2</span>
+                    <h3
+                      class="checkout-section-title"
+                      data-i18n="paymentMethodTitle"
+                    >
+                      Payment Method (وسيلة الدفع)
+                    </h3>
+                  </div>
+
+                  <div
+                    class="payment-methods-grid"
+                    role="radiogroup"
+                    aria-label="Select Payment Method"
+                  >
+                    <!-- Method 1: Credit / Debit Card / Meeza -->
+                    <label
+                      class="payment-card-option active"
+                      for="pay-method-card"
+                    >
+                      <div class="payment-card-header">
+                        <input
+                          type="radio"
+                          id="pay-method-card"
+                          name="payment_method"
+                          value="card"
+                          checked
+                        />
+                        <div class="payment-method-info">
+                          <span
+                            class="payment-method-name"
+                            data-i18n="payCardName"
+                            >Credit, Debit &amp; Meeza Cards</span
+                          >
+                          <span
+                            class="payment-method-sub"
+                            data-i18n="payCardSub"
+                            >Visa, Mastercard, Meeza (ميزة مصر), American
+                            Express</span
+                          >
+                        </div>
+                        <span class="material-symbols-outlined payment-icon"
+                          >credit_card</span
+                        >
+                      </div>
+                      <div class="payment-details-pane" id="pane-card">
+                        <div class="checkout-field field-full">
+                          <label
+                            for="card-number"
+                            class="field-label"
+                            data-i18n="cardNumber"
+                            >Card Number</label
+                          >
+                          <input
+                            type="text"
+                            id="card-number"
+                            class="field-input"
+                            placeholder="4242 •••• •••• 4242"
+                            maxlength="19"
+                          />
+                        </div>
+                        <div class="checkout-field-row">
+                          <div class="checkout-field field-half">
+                            <label
+                              for="card-expiry"
+                              class="field-label"
+                              data-i18n="cardExpiry"
+                              >Expiry (MM/YY)</label
+                            >
+                            <input
+                              type="text"
+                              id="card-expiry"
+                              class="field-input"
+                              placeholder="08/28"
+                              maxlength="5"
+                            />
+                          </div>
+                          <div class="checkout-field field-half">
+                            <label
+                              for="card-cvv"
+                              class="field-label"
+                              data-i18n="cardCvv"
+                              >CVV / CVC</label
+                            >
+                            <input
+                              type="password"
+                              id="card-cvv"
+                              class="field-input"
+                              placeholder="•••"
+                              maxlength="4"
+                            />
+                          </div>
+                        </div>
+                        <div class="checkout-field field-full">
+                          <label
+                            for="card-name"
+                            class="field-label"
+                            data-i18n="cardholderName"
+                            >Cardholder Name</label
+                          >
+                          <input
+                            type="text"
+                            id="card-name"
+                            class="field-input"
+                            placeholder="Eleanor Vance / الاسم المدون على البطاقة"
+                          />
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- Method 2: Cash on Delivery (COD) Egypt -->
+                    <label class="payment-card-option" for="pay-method-cod">
+                      <div class="payment-card-header">
+                        <input
+                          type="radio"
+                          id="pay-method-cod"
+                          name="payment_method"
+                          value="cod"
+                        />
+                        <div class="payment-method-info">
+                          <span
+                            class="payment-method-name"
+                            data-i18n="payCodName"
+                            >Cash on Delivery — الدفع عند الاستلام في مصر</span
+                          >
+                          <span class="payment-method-sub" data-i18n="payCodSub"
+                            >Pay in cash or POS terminal upon delivery anywhere
+                            in Egypt</span
+                          >
+                        </div>
+                        <span class="material-symbols-outlined payment-icon"
+                          >payments</span
+                        >
+                      </div>
+                      <div class="payment-details-pane hidden" id="pane-cod">
+                        <p class="cod-note">
+                          <span class="material-symbols-outlined cod-info-icon"
+                            >info</span
+                          >
+                          <span data-i18n="payCodNote"
+                            >الدفع نقدًا بالجنيه المصري (EGP) أو ببطاقة الدفع
+                            للمندوب عند وصول شحنتك لباب المنزل في كافة محافظات
+                            جمهورية مصر العربية (القاهرة، الجيزة، الإسكندرية،
+                            وجميع المحافظات).</span
+                          >
+                        </p>
+                      </div>
+                    </label>
+
+                    <!-- Method 3: InstaPay, Vodafone Cash & Digital Wallets -->
+                    <label class="payment-card-option" for="pay-method-wallet">
+                      <div class="payment-card-header">
+                        <input
+                          type="radio"
+                          id="pay-method-wallet"
+                          name="payment_method"
+                          value="wallet"
+                        />
+                        <div class="payment-method-info">
+                          <span
+                            class="payment-method-name"
+                            data-i18n="payWalletName"
+                            >InstaPay, Vodafone Cash &amp; Digital Wallets</span
+                          >
+                          <span
+                            class="payment-method-sub"
+                            data-i18n="payWalletSub"
+                            >انستاباي، فودافون كاش، محافظ المحمول، Apple Pay
+                            &amp; PayPal</span
+                          >
+                        </div>
+                        <span class="material-symbols-outlined payment-icon"
+                          >account_balance_wallet</span
+                        >
+                      </div>
+                      <div class="payment-details-pane hidden" id="pane-wallet">
+                        <div class="wallet-buttons-row">
+                          <div class="wallet-badge wallet-badge-instapay">
+                            InstaPay انستاباي
+                          </div>
+                          <div class="wallet-badge wallet-badge-voda">
+                            Vodafone Cash
+                          </div>
+                          <div class="wallet-badge wallet-badge-fawry">
+                            Fawry فوري
+                          </div>
+                          <div class="wallet-badge"> Pay</div>
+                        </div>
+                        <p class="cod-note">
+                          <span data-i18n="payWalletNote"
+                            >تحويل فوري لحظي عبر شبكة المدفوعات اللحظية InstaPay
+                            أو محفظة الهاتف الذكي، مع كود تأكيد فوري
+                            ومباشر.</span
+                          >
+                        </p>
+                      </div>
+                    </label>
+                  </div>
+                </section>
+              </div>
+
+              <!-- Right Column: Order Summary -->
+              <div class="checkout-col-summary">
+                <div class="checkout-summary-card">
+                  <h3 class="summary-title" data-i18n="orderSummary">
+                    Order Summary
+                  </h3>
+                  <div
+                    class="checkout-summary-items"
+                    id="checkout-summary-items"
+                  >
+                    <!-- Dynamically rendered cart items -->
+                  </div>
+
+                  <!-- Promo code input -->
+                  <div class="checkout-promo-row">
+                    <input
+                      type="text"
+                      id="checkout-promo-input"
+                      class="checkout-promo-input"
+                      placeholder="Promo code (try ATELIER10)"
+                      data-i18n-placeholder="promoPlaceholder"
+                    />
+                    <button
+                      type="button"
+                      class="btn-promo-apply"
+                      id="checkout-promo-btn"
+                      data-i18n="applyPromo"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                  <div class="promo-feedback hidden" id="promo-feedback"></div>
+
+                  <div class="summary-breakdown">
+                    <div class="summary-row">
+                      <span data-i18n="subtotal">Subtotal</span>
+                      <span id="checkout-subtotal-val">$0</span>
+                    </div>
+                    <div
+                      class="summary-row"
+                      id="checkout-discount-row"
+                      style="display: none; color: var(--primary)"
+                    >
+                      <span data-i18n="promoPrivilege"
+                        >Atelier Privilege (10%)</span
+                      >
+                      <span id="checkout-discount-val">-$0</span>
+                    </div>
+                    <div class="summary-row">
+                      <span data-i18n="freeShipping"
+                        >Complimentary Shipping</span
+                      >
+                      <span class="text-free" data-i18n="free">FREE</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total-row">
+                      <span data-i18n="total">Total</span>
+                      <span class="summary-total-amount" id="checkout-total-val"
+                        >$0</span
+                      >
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn-primary checkout-submit-btn"
+                    id="checkout-submit-btn"
+                  >
+                    <span class="btn-submit-text" data-i18n="confirmAndPay"
+                      >Confirm &amp; Pay</span
+                    >
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                  </button>
+
+                  <div class="checkout-guarantee">
+                    <span data-i18n="guarantee1"
+                      >✓ 30-day effortless returns</span
+                    >
+                    <span data-i18n="guarantee2"
+                      >✓ Artisanal authenticity certificate</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Checkout Success View -->
+        <div class="checkout-success-view hidden" id="checkout-success-view">
+          <div class="success-icon-wrap">
+            <span class="material-symbols-outlined success-icon"
+              >check_circle</span
+            >
+          </div>
+          <span class="label-caps success-badge" data-i18n="orderConfirmed"
+            >Order Confirmed</span
+          >
+          <h2 class="success-title" data-i18n="thankYou">
+            Thank You For Your Order
+          </h2>
+          <p class="success-desc" data-i18n="thankYouSub">
+            Your order has been received and is being prepared with artisanal
+            care. A confirmation email with tracking has been sent.
+          </p>
+
+          <div class="success-receipt-card">
+            <div class="receipt-header">
+              <span class="receipt-order-num"
+                ><span data-i18n="receiptRef">Order Reference:</span>
+                <strong id="success-order-id">#ATL-9024</strong></span
+              >
+              <span class="receipt-date" id="success-order-date"></span>
+            </div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-details-grid">
+              <div class="receipt-field">
+                <span class="receipt-label" data-i18n="receiptRecipient"
+                  >Recipient</span
+                >
+                <strong id="success-customer-name">Eleanor Vance</strong>
+              </div>
+              <div class="receipt-field">
+                <span class="receipt-label" data-i18n="receiptAddress"
+                  >Delivery Address</span
+                >
+                <span id="success-delivery-address">Paris, France</span>
+              </div>
+              <div class="receipt-field">
+                <span class="receipt-label" data-i18n="receiptPaymentMethod"
+                  >Payment Method</span
+                >
+                <strong id="success-payment-method">Credit Card</strong>
+              </div>
+              <div class="receipt-field">
+                <span class="receipt-label" data-i18n="receiptTotal"
+                  >Total Amount</span
+                >
+                <strong class="receipt-total" id="success-total-amount"
+                  >$0</strong
+                >
+              </div>
+            </div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-estimate">
+              <span class="material-symbols-outlined">local_shipping</span>
+              <span data-i18n="receiptEstimateText"
+                >Estimated Delivery:
+                <strong>2 – 4 Business Days</strong> (Carbon Neutral)</span
+              >
+            </div>
+          </div>
+
+          <div class="success-actions">
+            <button type="button" class="btn-secondary" id="checkout-print-btn">
+              <span class="material-symbols-outlined">print</span>
+              <span data-i18n="printReceipt">Print Receipt</span>
+            </button>
+            <button
+              type="button"
+              class="btn-primary"
+              id="checkout-continue-btn"
+            >
+              <span class="material-symbols-outlined">shopping_bag</span>
+              <span data-i18n="continueShopping">Continue Shopping</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div
+      class="search-overlay hidden"
+      id="search-overlay"
+      role="search"
+      aria-label="Product Search"
+    >
+      <div class="search-inner">
+        <div class="search-bar">
+          <span class="material-symbols-outlined search-icon-input"
+            >search</span
+          >
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search pieces, collections..."
+            data-i18n-placeholder="searchPlaceholder"
+            aria-label="Search"
+            autocomplete="off"
+          />
+          <button
+            class="icon-btn search-close-btn"
+            id="search-close-btn"
+            aria-label="Close Search"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div
+          class="search-results"
+          id="search-results"
+          aria-live="polite"
+        ></div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
